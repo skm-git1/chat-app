@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
     // console.log("message sent and it was sent by", req.params.id);
@@ -34,15 +35,31 @@ export const sendMessage = async (req, res) => {
             conversation.messages.push(newMessage._id);
         }
 
-        // SOCKET IO FUNCTIONALITY WILL GO HERE
-
-
         // await conversation.save();
         // await newMessage.save();
-        // this will run in parallel
-        await Promise.all([conversation.save(), newMessage.save()]);
 
-        res.status(201).json({newMessage});
+        // these two will run in parallel because of promise
+        await Promise.all([conversation.save(), newMessage.save()]);
+        
+        // SOCKET IO FUNCTIONALITY WILL GO HERE
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if(receiverSocketId){
+            // io.to(<socket_id>).emit() is used to send events to a specific client
+            io.to(receiverSocketId).emit("newMessage", newMessage);
+        }
+
+
+        res.status(201).json(newMessage); // yahan maine ise {newMessage} object ki tarah bhej diya tha
+        // this created a lot of problems
+        /*Why is newMessage appearing on the frontend?
+
+You are sending the newly created message back to the frontend as { newMessage: messageObject }. This causes the message object to be wrapped in newMessage, hence why the frontend is expecting message.newMessage instead of directly accessing message.
+Potential Fix: If you don't want to wrap the message in newMessage, modify the response like this:
+
+js
+Copy code
+res.status(201).json(newMessage);
+This will return the message object directly, allowing your frontend to handle it as a flat structure. */
 
 
     } catch (error) {

@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 // making the signup controller
-export const singup = async (req, res) =>{
+export const signup = async (req, res) =>{
     // console.log("signup");
     // res.send("Signup User");
     try {
@@ -73,7 +73,7 @@ export const login = async (req, res) =>{
         generateTokenAndSetCookie(user._id, res);
 
         res.status(200).json({
-            id: user._id,
+            _id: user._id,
             fullName: user.fullName,
             username: user.username,
             profilePic: user.profilePic

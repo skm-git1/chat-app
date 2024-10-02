@@ -38,13 +38,14 @@ import cookieParser from 'cookie-parser';
 
 // database import
 import connectToMongoDB from './db/connectToMongoDB.js';
-
+// import the app from socket.js file
+import { app, server } from './socket/socket.js';
 // routes
 import authRoutes from './routes/auth.routes.js';
 import messageRoutes from './routes/message.routes.js';
 import userRoutes from './routes/user.routes.js';
 
-const app = express();
+
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
@@ -54,7 +55,7 @@ app.use(express.json()); // to parse incoming reqs with json payloads (from req.
 app.use(cookieParser()); // middleware to access cookies in protectRoute middleware;
 
 app.use("/api/auth", authRoutes); // middleware for user authentication- signup, login, logout
-app.use("/api/message", messageRoutes); // middleware for messages
+app.use("/api/messages", messageRoutes); // middleware for messages
 app.use("/api/users", userRoutes);
 
 
@@ -63,7 +64,7 @@ app.use("/api/users", userRoutes);
 // });
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connectToMongoDB();
     console.log(`Server is running on port ${PORT}`);
 });
