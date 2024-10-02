@@ -46,7 +46,7 @@ import authRoutes from './routes/auth.routes.js';
 import messageRoutes from './routes/message.routes.js';
 import userRoutes from './routes/user.routes.js';
 
-const __dirname = path.resolve()
+const __dirname = path.resolve();
 
 dotenv.config();
 
