@@ -2,12 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 body{
     background: linear-gradient(rgba(59, 130, 246, 0.05), rgba(37, 99, 235, 0.1)), url("/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-width: 320px;
+    overflow-x: hidden;
 }
 
 /* dark mode looking scrollbar */
@@ -57,4 +67,39 @@ body{
 	60% {
 		transform: translate3d(4px, 0, 0);
 	}
+}
+
+/* Additional responsive styles */
+@media (max-width: 380px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .chat-bubble {
+        max-width: 85% !important;
+    }
+}
+
+@media (max-height: 600px) {
+    .h-\[90vh\] {
+        height: 95vh !important;
+    }
+}
+
+/* Full-screen chat styles */
+@media (min-width: 768px) {
+    body {
+        overflow: hidden;
+    }
+    
+    .md\:flex-1 {
+        flex: 1 1 0%;
+        height: 100vh;
+    }
+    
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
 }

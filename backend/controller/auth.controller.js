@@ -7,7 +7,7 @@ export const signup = async (req, res) =>{
     // console.log("signup");
     // res.send("Signup User");
     try {
-        const {fullName, username, password, confirmPassword, gender} = req.body;
+        const {fullName, username, password, confirmPassword, gender, email} = req.body;
 
         if(password != confirmPassword){
             return res.status(400).json({error: "Passwords do not match."});
@@ -30,6 +30,7 @@ export const signup = async (req, res) =>{
         const newUser = new User({
             fullName,
             username,
+            email,
             password: hashedPassword,
             gender,
             profilePic: gender === "male" ? boyProfilePic : girlProfilePic

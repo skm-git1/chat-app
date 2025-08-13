@@ -22,13 +22,20 @@ const SearchInput = () => {
 	}
 	return (
 		<form onSubmit={handleSubmit}
-		className='flex items-center gap-2'>
-			<input type='text' placeholder='Search…' className='input input-bordered rounded-full' 
-			value = {search}  
-			onChange={(e)=> setSearch(e.target.value)}
-			/>
-			<button type='submit' className='btn btn-circle bg-sky-500 text-white'>
-				<IoSearchSharp className='w-6 h-6 outline-none' />
+		className='flex items-center gap-2 sm:gap-3'>
+			<div className="relative flex-grow">
+				<div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+					<IoSearchSharp className='w-4 h-4 sm:w-5 sm:h-5 text-gray-400' />
+				</div>
+				<input type='text' 
+				placeholder='Search contacts...' 
+				className='input input-bordered rounded-full text-sm sm:text-base py-2 px-4 ps-10 sm:ps-12 sm:py-3 sm:px-5 h-auto min-h-0 sm:min-h-[2.8rem] w-full bg-gray-700 border-gray-600' 
+				value={search}  
+				onChange={(e)=> setSearch(e.target.value)}
+				/>
+			</div>
+			<button type='submit' className='btn btn-circle bg-sky-500 hover:bg-sky-600 text-white h-9 w-9 sm:h-11 sm:w-11 min-h-0 flex items-center justify-center'>
+				<IoSearchSharp className='w-4 h-4 sm:w-5 sm:h-5 outline-none' />
 			</button>
 		</form>
 	);

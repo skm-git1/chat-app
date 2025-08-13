@@ -13,13 +13,13 @@ const Conversation = ({conversation, lastIdx, emoji}) => {
 	// console.log(onlineUsers);
 	return (
 		<>
-			<div className={`flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer
+			<div className={`flex gap-2 sm:gap-3 items-center hover:bg-sky-500 rounded p-2 sm:p-3 py-2 cursor-pointer
 				${isSelected ? "bg-sky-500": ""}
 				`}
 				onClick={() => setSelectedConversation(conversation)}
 				>
 				<div className={`avatar ${isOnline ? "online" : ""}`}>
-					<div className='w-12 rounded-full'>
+					<div className='w-10 sm:w-14 rounded-full'>
 						<img
 							src= {conversation.profilePic}
 							alt='user avatar'
@@ -28,10 +28,13 @@ const Conversation = ({conversation, lastIdx, emoji}) => {
 				</div>
 
 				<div className='flex flex-col flex-1'>
-					<div className='flex gap-3 justify-between'>
-						<p className='font-bold text-gray-200'>{conversation.fullName}</p>
-						<span className='text-xl'>{emoji}</span>
+					<div className='flex gap-1 sm:gap-3 justify-between items-center'>
+						<p className='font-bold text-gray-200 text-sm sm:text-base truncate'>{conversation.fullName}</p>
+						<span className='text-base sm:text-xl'>{emoji}</span>
 					</div>
+					<p className='text-xs text-gray-300 opacity-80 mt-1 hidden sm:block'>
+						{isOnline ? 'Active now' : 'Last seen recently'}
+					</p>
 				</div>
 			</div>
 

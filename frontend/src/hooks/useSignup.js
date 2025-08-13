@@ -11,8 +11,8 @@ const useSignup = () => {
 	const [loading, setLoading] = useState(false);
 	const { setAuthUser } = useAuthContext();
 
-	const signup = async ({fullName, username, password, confirmPassword, gender}) => {
-		const success = handleInputErrors({ fullName, username, password, confirmPassword, gender });
+	const signup = async ({fullName, username, email, password, confirmPassword, gender}) => {
+		const success = handleInputErrors({ fullName, username, email, password, confirmPassword, gender });
 		if (!success) {
             console.log("not success in handleinput error fn");
             return;
@@ -23,7 +23,7 @@ const useSignup = () => {
 			const res = await fetch("/api/auth/signup", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ fullName, username, password, confirmPassword, gender }),
+				body: JSON.stringify({ fullName, username, email, password, confirmPassword, gender }),
 			});
             
             
@@ -50,9 +50,16 @@ const useSignup = () => {
 export default useSignup
 
 
-function handleInputErrors({fullName, username, password, confirmPassword, gender}){
-    if(!fullName || !username || !password || !confirmPassword || !gender){
+function handleInputErrors({fullName, username, email, password, confirmPassword, gender}){
+    if(!fullName || !username || !email || !password || !confirmPassword || !gender){
         toast.error("Please fill all the fields.");
+        return false;
+    }
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        toast.error("Please enter a valid email address.");
         return false;
     }
 

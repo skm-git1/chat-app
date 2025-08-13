@@ -8,6 +8,7 @@ const SignUp = () => {
   const [inputs, setInputs] = useState({
     fullName:"",
     username:"",
+    email:"",
     password:"",
     confirmPassword:"",
     gender:''
@@ -58,6 +59,19 @@ const SignUp = () => {
               className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all' 
               value={inputs.username}
               onChange={(e) => setInputs({... inputs, username : e.target.value})}
+            />
+					</div>
+
+          <div>
+						<label className='block text-sm font-medium text-gray-700 mb-1 ml-1'>
+							Email Address
+						</label>
+						<input 
+              type='email' 
+              placeholder='john.doe@example.com' 
+              className='w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all' 
+              value={inputs.email}
+              onChange={(e) => setInputs({... inputs, email : e.target.value})}
             />
 					</div>
 

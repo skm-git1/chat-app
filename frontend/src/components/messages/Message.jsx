@@ -23,12 +23,12 @@ const Message = ({ message }) => {
 	return (
 		<div className={`chat ${chatClassName}`}>
 			<div className='chat-image avatar'>
-				<div className='w-10 rounded-full'>
-					<img alt='Tailwind CSS chat bubble component' src={profilePic} />
+				<div className='w-8 sm:w-10 rounded-full'>
+					<img alt='User profile picture' src={profilePic} />
 				</div>
 			</div>
-			<div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2`}>{message.message}</div>
-			<div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{formattedTime}</div>
+			<div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2 text-sm sm:text-base max-w-[75%] sm:max-w-[70%] break-words`}>{message.message}</div>
+			<div className='chat-footer opacity-50 text-[10px] sm:text-xs flex gap-1 items-center'>{formattedTime}</div>
 		</div>
 	);
 };

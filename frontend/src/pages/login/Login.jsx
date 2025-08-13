@@ -43,9 +43,9 @@ const Login = () => {
 							<label className='block text-sm font-medium text-gray-700 ml-1'>
 								Password
 							</label>
-							<a href='#' className='text-xs text-blue-600 hover:text-blue-800 font-medium'>
+							<Link to='/forgot-password' className='text-xs text-blue-600 hover:text-blue-800 font-medium'>
 								Forgot password?
-							</a>
+							</Link>
 						</div>
 						<div className='relative'>
 							<input

@@ -45,6 +45,7 @@ import { app, server } from './socket/socket.js';
 import authRoutes from './routes/auth.routes.js';
 import messageRoutes from './routes/message.routes.js';
 import userRoutes from './routes/user.routes.js';
+import passwordRoutes from './routes/password.routes.js';
 
 const __dirname = path.resolve();
 
@@ -59,6 +60,7 @@ app.use(cookieParser()); // middleware to access cookies in protectRoute middlew
 app.use("/api/auth", authRoutes); // middleware for user authentication- signup, login, logout
 app.use("/api/messages", messageRoutes); // middleware for messages
 app.use("/api/users", userRoutes);
+app.use("/api/password", passwordRoutes); // middleware for password reset functionality
 
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.get("*", (req, res) =>{

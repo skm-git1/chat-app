@@ -23,7 +23,19 @@ const userSchema = new mongoose.Schema({
     profilePic:{
         type: String,
         default: ""
-    } // createdAt and updatedAt fields => Memeber since = User.createdAt;
+    },
+    email:{
+        type: String,
+        sparse: true  // Allow null but enforce uniqueness if present
+    },
+    resetToken:{
+        type: String,
+        sparse: true
+    },
+    resetTokenExpiry:{
+        type: Date,
+        sparse: true
+    } // createdAt and updatedAt fields => Member since = User.createdAt;
 }, {timestamps: true})
 
 const User = mongoose.model("User", userSchema);
