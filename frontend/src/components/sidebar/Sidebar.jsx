@@ -6,9 +6,9 @@ import { useAuthContext } from "../../context/AuthContext";
 const Sidebar = () => {
 	const { authUser } = useAuthContext();
 	return (
-		<div className='border-r border-slate-500 flex flex-col w-full md:w-[350px] lg:w-[400px] xl:w-[420px] max-h-full'>
+		<div className='border-r border-slate-500 flex flex-col w-full md:w-[350px] lg:w-[400px] xl:w-[420px] h-screen'>
 			<div className="bg-gray-700 p-3 sm:p-4 sticky top-0 z-10 shadow-md">
-				<div className="flex items-center justify-between mb-4">
+				<div className="flex items-center justify-between mb-4 pt-1">
 					<div className="flex items-center gap-3">
 						<div className="avatar">
 							<div className="w-10 sm:w-12 rounded-full">

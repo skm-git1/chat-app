@@ -14,7 +14,7 @@ const MessageInput = () => {
 	};
 
 	return (
-		<form className='px-2 sm:px-4 py-3 sm:py-4 bg-gray-800 bg-opacity-50 sticky bottom-0 border-t border-gray-700' onSubmit={handleSubmit}>
+		<form className='px-2 sm:px-4 py-3 sm:py-4 bg-gray-800 bg-opacity-70 border-t border-gray-700 w-full' onSubmit={handleSubmit}>
 			<div className='w-full relative'>
 				<input
 					type='text'

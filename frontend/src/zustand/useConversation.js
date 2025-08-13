@@ -17,6 +17,8 @@ const useConversation = create((set) => ({
 	setSelectedConversation: (selectedConversation) => set({ selectedConversation }),
 	messages: [],
 	setMessages: (messages) => set({ messages }),
+	showMessageContainer: false, // For mobile navigation
+	setShowMessageContainer: (showMessageContainer) => set({ showMessageContainer }),
 }));
 
 export default useConversation;

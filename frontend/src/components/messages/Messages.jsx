@@ -40,18 +40,24 @@ const Messages = () => {
 	const lastMessageRef = useRef();
 
 	useEffect(() => {
-		setTimeout(() => {
-			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-		}, 100);
+		if (messages.length > 0) {
+			setTimeout(() => {
+				lastMessageRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+			}, 100);
+		}
 	}, [messages]);
 
 	return (
-		<div className='px-2 sm:px-4 flex-1 overflow-auto h-[calc(100vh-130px)] md:h-[calc(100vh-140px)]'>
+		<div className='px-2 sm:px-4 pb-2 w-full'>
+			{/* Add substantial padding at the top for first message */}
+			{messages.length > 0 && <div className="pt-5 mb-2"></div>}
+			
 			{!loading &&
 				messages.length > 0 &&
-				messages.map((message) => (
+				messages.map((message, idx) => (
 					<div key={message._id}
-					ref = {lastMessageRef}>
+					className={`${idx === 0 ? "mt-4" : ""}`}
+					ref={idx === messages.length - 1 ? lastMessageRef : null}>
 						<Message message={message} />
 					</div>
 				))}

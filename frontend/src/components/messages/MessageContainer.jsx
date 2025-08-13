@@ -3,14 +3,20 @@ import useConversation from "../../zustand/useConversation";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 import {TiMessages} from "react-icons/ti";
+import { BiArrowBack } from "react-icons/bi";
 import { useAuthContext } from "../../context/AuthContext";
 import { useSocketContext } from "../../context/SocketContext";
+
 const MessageContainer = () => {
-	const { selectedConversation, setSelectedConversation } = useConversation();
+	const { selectedConversation, setSelectedConversation, setShowMessageContainer } = useConversation();
 	const { onlineUsers } = useSocketContext();
 	
 	const isUserOnline = (userId) => {
 		return onlineUsers.includes(userId);
+	};
+	
+	const handleBackClick = () => {
+		setShowMessageContainer(false);
 	};
 	
 	useEffect(() =>{
@@ -21,11 +27,17 @@ const MessageContainer = () => {
 	// const {selectedConversation, setSelectedConversation} = useConversation();
     return (
 
-		<div className='w-full md:flex-1 flex flex-col'>
+		<div className='w-full md:flex-1 flex flex-col h-full'>
 			{!selectedConversation ? (<NoChatSelected/>) : (
-                <>
+                <div className="flex flex-col h-screen">
 				{/* Header */}
-				<div className='bg-slate-500 px-3 sm:px-6 py-3 mb-2 flex items-center sticky-header shadow-md'>
+				<div className='bg-slate-500 px-3 sm:px-6 py-3 flex items-center shadow-md sticky top-0 z-10 mb-2'>
+					<button 
+						onClick={handleBackClick} 
+						className="md:hidden mr-2 text-gray-900 hover:text-gray-700 transition-colors"
+					>
+						<BiArrowBack className="w-6 h-6" />
+					</button>
 					<div className={`avatar ${isUserOnline(selectedConversation._id) ? "online" : ""} mr-2 sm:mr-3`}>
 						<div className='w-8 sm:w-10 rounded-full'>
 							<img src={selectedConversation.profilePic} alt="User avatar" />
@@ -37,9 +49,17 @@ const MessageContainer = () => {
 					</div>
 				</div>
 
-				<Messages />
-				<MessageInput />
-				</>
+				{/* Add more space between header and messages */}
+				<div className="h-3 bg-transparent"></div>
+
+				<div className="flex-grow overflow-auto">
+					<Messages />
+				</div>
+				
+				<div className="sticky bottom-0 w-full">
+					<MessageInput />
+				</div>
+				</div>
             )}
 		</div>
 	);
