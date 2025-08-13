@@ -8,21 +8,23 @@ const Sidebar = () => {
 	return (
 		<div className='border-r border-slate-500 flex flex-col w-full md:w-[350px] lg:w-[400px] xl:w-[420px] max-h-full'>
 			<div className="bg-gray-700 p-3 sm:p-4 sticky top-0 z-10 shadow-md">
-				<div className="flex items-center gap-3 mb-4">
-					<div className="avatar">
-						<div className="w-10 sm:w-12 rounded-full">
-							<img src={authUser?.profilePic} alt="User profile" />
+				<div className="flex items-center justify-between mb-4">
+					<div className="flex items-center gap-3">
+						<div className="avatar">
+							<div className="w-10 sm:w-12 rounded-full">
+								<img src={authUser?.profilePic} alt="User profile" />
+							</div>
+						</div>
+						<div>
+							<h1 className="text-lg sm:text-xl font-bold text-white">{authUser?.fullName}</h1>
+							<p className="text-xs text-gray-300">@{authUser?.username}</p>
 						</div>
 					</div>
-					<div>
-						<h1 className="text-lg sm:text-xl font-bold text-white">{authUser?.fullName}</h1>
-						<p className="text-xs text-gray-300">@{authUser?.username}</p>
-					</div>
+					<LogoutButton />
 				</div>
 				<SearchInput />
 			</div>
 			<Conversations />
-			<LogoutButton />
 		</div>
 	);
 };

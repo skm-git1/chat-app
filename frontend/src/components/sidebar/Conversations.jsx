@@ -7,7 +7,7 @@ const Conversations = () => {
 	const {loading, conversations} = useGetConversations();
 	console.log("CONVERSATIONS: ", conversations);
 	return (
-		<div className='py-2 sm:py-3 flex flex-col overflow-auto h-[calc(100vh-170px)] md:h-[calc(100vh-180px)]'>
+		<div className='py-2 sm:py-3 flex flex-col overflow-auto h-[calc(100vh-120px)] md:h-[calc(100vh-130px)]'>
 			<h2 className="text-base sm:text-lg font-medium text-gray-200 px-2 mb-2">Recent Chats</h2>
 		{
 			conversations.length > 0 ? conversations.map((conversation, idx) => (
