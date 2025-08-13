@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 body{
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/bg.png");
+    background: linear-gradient(rgba(59, 130, 246, 0.05), rgba(37, 99, 235, 0.1)), url("/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* dark mode looking scrollbar */
